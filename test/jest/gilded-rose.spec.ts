@@ -60,4 +60,22 @@ describe('Gilded Rose', () => {
       expect(items[i].quality).toBe(expectedItems[i].quality);
     }
   });
+
+  it('Aged Brie quality less then fifty increase by one', () => {
+    const gildedRose = new GildedRose(
+      [
+        new Item("Aged Brie", 10, 20),
+      ]
+    );
+    const gildedRoseExpected = new GildedRose(
+      [
+        new Item("Aged Brie", 10, 21),
+      ]
+    );
+    const items = gildedRose.updateQuality();
+    const expectedItems = gildedRoseExpected.items;
+    for (let i=0; i < items.length; i++) {
+      expect(items[i].quality).toBe(expectedItems[i].quality);
+    }
+  });
 });
