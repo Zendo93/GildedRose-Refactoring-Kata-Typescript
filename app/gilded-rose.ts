@@ -21,6 +21,10 @@ export class GildedRose {
     --this.items[item].quality;
   }
 
+  decreaseSellIn(item) {
+    --this.items[item].sellIn;
+  }
+
   increaseQuality(item) {
     ++this.items[item].quality;
   }
@@ -47,10 +51,8 @@ export class GildedRose {
         if (this.items[i].quality < 50) {
           this.increaseQuality(i);
           if (this.isConcert(i)) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.increaseQuality(i);
-              }
+            if (this.items[i].sellIn < 11 && this.items[i].quality < 50) {
+              this.increaseQuality(i);
             }
             if (this.items[i].sellIn < 6) {
               if (this.items[i].quality < 50) {
@@ -62,7 +64,7 @@ export class GildedRose {
       }
 
       if (!this.isWeapon(i)) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.decreaseSellIn(i);
       }
 
       if (this.items[i].sellIn < 0) {
