@@ -133,4 +133,22 @@ describe('Gilded Rose', () => {
       expect(items[i].quality).toBe(expectedItems[i].quality);
     }
   });
+
+  it('isConcert, Not isFood decrease quality to zero when sellIn less then zero', () => {
+    const gildedRose = new GildedRose(
+      [
+        new Item("Backstage passes to a TAFKAL80ETC concert", -1, 5),
+      ]
+    );
+    const gildedRoseExpected = new GildedRose(
+      [
+        new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+      ]
+    );
+    const items = gildedRose.updateQuality();
+    const expectedItems = gildedRoseExpected.items;
+    for (let i=0; i < items.length; i++) {
+      expect(items[i].quality).toBe(expectedItems[i].quality);
+    }
+  });
 });
