@@ -151,4 +151,23 @@ describe('Gilded Rose', () => {
       expect(items[i].quality).toBe(expectedItems[i].quality);
     }
   });
+
+  it('isFood increase quality by two when sellIn less then zero ' +
+    'and quality less than fifty', () => {
+    const gildedRose = new GildedRose(
+      [
+        new Item("Aged Brie", -1, 0),
+      ]
+    );
+    const gildedRoseExpected = new GildedRose(
+      [
+        new Item("Aged Brie", -1, 2),
+      ]
+    );
+    const items = gildedRose.updateQuality();
+    const expectedItems = gildedRoseExpected.items;
+    for (let i=0; i < items.length; i++) {
+      expect(items[i].quality).toBe(expectedItems[i].quality);
+    }
+  });
 });
