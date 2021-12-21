@@ -54,10 +54,8 @@ export class GildedRose {
             if (this.items[i].sellIn < 11 && this.items[i].quality < 50) {
               this.increaseQuality(i);
             }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.increaseQuality(i);
-              }
+            if (this.items[i].sellIn < 6 && this.items[i].quality < 50) {
+              this.increaseQuality(i);
             }
           }
         }
