@@ -18,7 +18,9 @@ export class GildedRose {
   }
 
   decreaseQuality(item) {
-    --this.items[item].quality;
+    if (this.items[item].quality > 0) {
+      --this.items[item].quality;
+    }
   }
 
   decreaseSellIn(item) {
@@ -26,7 +28,9 @@ export class GildedRose {
   }
 
   increaseQuality(item) {
-    ++this.items[item].quality;
+    if (this.items[item].quality < 50) {
+      ++this.items[item].quality;
+    }
   }
 
   isFood(item): boolean {
@@ -44,19 +48,13 @@ export class GildedRose {
   updateQuality() {
     for (let i = 0; i < this.items.length; i++) {
       if (!this.isFood(i) && !this.isConcert(i) && !this.isWeapon(i)) {
-        if (this.items[i].quality > 0) {
-          this.decreaseQuality(i);
-        }
+        this.decreaseQuality(i);
       } else {
-        if (this.items[i].quality < 50) {
+        this.increaseQuality(i);
+        if (this.isConcert(i) && this.items[i].sellIn < 11) {
           this.increaseQuality(i);
-          if (this.isConcert(i)) {
-            if (this.items[i].sellIn < 11 && this.items[i].quality < 50) {
-              this.increaseQuality(i);
-            }
-            if (this.items[i].sellIn < 6 && this.items[i].quality < 50) {
-              this.increaseQuality(i);
-            }
+          if (this.items[i].sellIn < 6) {
+            this.increaseQuality(i);
           }
         }
       }
@@ -66,18 +64,14 @@ export class GildedRose {
       }
 
       if (this.items[i].sellIn < 0) {
-       if (!this.isFood(i)) {
-          if (!this.isConcert(i)) {
-            if (this.items[i].quality > 0 && !this.isWeapon(i)) {
-                this.decreaseQuality(i);
-            }
+        if (!this.isFood(i)) {
+          if (!this.isConcert(i) && !this.isWeapon(i)) {
+            this.decreaseQuality(i);
           } else {
             this.items[i].quality = 0;
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.increaseQuality(i);
-          }
+          this.increaseQuality(i);
         }
       }
     }
