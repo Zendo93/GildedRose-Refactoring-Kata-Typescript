@@ -61,21 +61,21 @@ describe('Gilded Rose', () => {
     }
   });
 
-  it('Aged Brie quality less then fifty increase by one', () => {
+  it('Not isWeapon decrease sellIn by one', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Aged Brie", 10, 20),
+        new Item("Aged Brie", 10, 0),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Aged Brie", 10, 21),
+        new Item("Aged Brie", 9, 0),
       ]
     );
     const items = gildedRose.updateQuality();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
-      expect(items[i].quality).toBe(expectedItems[i].quality);
+      expect(items[i].sellIn).toBe(expectedItems[i].sellIn);
     }
   });
 });
