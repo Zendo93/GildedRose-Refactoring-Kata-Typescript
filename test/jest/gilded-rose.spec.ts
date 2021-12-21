@@ -114,4 +114,23 @@ describe('Gilded Rose', () => {
       expect(items[i].quality).toBe(expectedItems[i].quality);
     }
   });
+
+  it('Not isFood, isConcert, isWeapon decrease quality by one when sellIn less then zero ' +
+    'and quality greater than zero', () => {
+    const gildedRose = new GildedRose(
+      [
+        new Item("+5 Dexterity Vest", -1, 1),
+      ]
+    );
+    const gildedRoseExpected = new GildedRose(
+      [
+        new Item("+5 Dexterity Vest", -1, 0),
+      ]
+    );
+    const items = gildedRose.updateQuality();
+    const expectedItems = gildedRoseExpected.items;
+    for (let i=0; i < items.length; i++) {
+      expect(items[i].quality).toBe(expectedItems[i].quality);
+    }
+  });
 });
