@@ -66,15 +66,13 @@ export class GildedRose {
       }
 
       if (this.items[i].sellIn < 0) {
-        if (!this.isFood(i)) {
+       if (!this.isFood(i)) {
           if (!this.isConcert(i)) {
-            if (this.items[i].quality > 0) {
-              if (!this.isWeapon(i)) {
+            if (this.items[i].quality > 0 && !this.isWeapon(i)) {
                 this.decreaseQuality(i);
-              }
             }
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality
+            this.items[i].quality = 0;
           }
         } else {
           if (this.items[i].quality < 50) {
