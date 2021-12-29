@@ -53,25 +53,26 @@ export class GildedRose {
 
       if (this.isFood(i) || this.isConcert(i) || this.isWeapon(i)) {
         this.increaseQuality(i);
-        if (this.isConcert(i) && this.items[i].sellIn < 11) {
-          this.increaseQuality(i);
-          if (this.items[i].sellIn < 6) {
-            this.increaseQuality(i);
-          }
-        }
+      }
+
+      if (this.isConcert(i) && this.items[i].sellIn < 11) {
+        this.increaseQuality(i);
+      }
+
+      if (this.isConcert(i) && this.items[i].sellIn < 6) {
+        this.increaseQuality(i);
       }
 
       if (!this.isWeapon(i)) {
         this.decreaseSellIn(i);
       }
 
-      if (this.items[i].sellIn < 0 && !this.isFood(i)) {
-        if (!this.isConcert(i) && !this.isWeapon(i)) {
-          this.decreaseQuality(i);
-        }
-        if (this.isConcert(i) || this.isWeapon(i)) {
-          this.items[i].quality = 0;
-        }
+      if (this.items[i].sellIn < 0 && !this.isFood(i) && !this.isConcert(i) && !this.isWeapon(i)) {
+        this.decreaseQuality(i);
+      }
+
+      if (this.items[i].sellIn < 0 && !this.isFood(i) && this.isConcert(i) || this.isWeapon(i)) {
+        this.items[i].quality = 0;
       }
 
       if (this.items[i].sellIn < 0 && this.isFood(i)) {
