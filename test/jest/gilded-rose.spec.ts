@@ -15,7 +15,7 @@ describe('Gilded Rose', () => {
         new Item("Elixir of the Mongoose", 5, 6)
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -36,7 +36,7 @@ describe('Gilded Rose', () => {
         new Item("Elixir of the Mongoose", 5, 0)
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -54,7 +54,7 @@ describe('Gilded Rose', () => {
         new Item("Aged Brie", 10, 21),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -72,7 +72,7 @@ describe('Gilded Rose', () => {
         new Item("Aged Brie", 9, 0),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].sellIn).toBe(expectedItems[i].sellIn);
@@ -90,7 +90,7 @@ describe('Gilded Rose', () => {
         new Item("Backstage passes to a TAFKAL80ETC concert", 10, 2),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -108,7 +108,7 @@ describe('Gilded Rose', () => {
         new Item("Backstage passes to a TAFKAL80ETC concert", 5, 3),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -127,7 +127,7 @@ describe('Gilded Rose', () => {
         new Item("+5 Dexterity Vest", -1, 0),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -145,7 +145,7 @@ describe('Gilded Rose', () => {
         new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
@@ -164,7 +164,7 @@ describe('Gilded Rose', () => {
         new Item("Aged Brie", -1, 2),
       ]
     );
-    const items = gildedRose.updateQuality();
+    const items = gildedRose.update();
     const expectedItems = gildedRoseExpected.items;
     for (let i=0; i < items.length; i++) {
       expect(items[i].quality).toBe(expectedItems[i].quality);
