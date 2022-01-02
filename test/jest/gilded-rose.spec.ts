@@ -1,19 +1,21 @@
 import { GildedRose } from '@/gilded-rose';
-import {Item} from "@/Item";
+import {Other} from "@/Other";
+import {Food} from "@/Food";
+import {Concert} from "@/Concert";
 
 describe('Gilded Rose', () => {
   it('Not Aged Brie, Backstage passes to a TAFKAL80ETC concert,' +
     'Sulfuras, Hand of Ragnaros should decrease quality by one if greater than zero', () => {
     const gildedRose = new GildedRose(
       [
-              new Item("+5 Dexterity Vest", 10, 20),
-              new Item("Elixir of the Mongoose", 5, 7)
+              new Other("+5 Dexterity Vest", 10, 20),
+              new Other("Elixir of the Mongoose", 5, 7)
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("+5 Dexterity Vest", 10, 19),
-        new Item("Elixir of the Mongoose", 5, 6)
+        new Other("+5 Dexterity Vest", 10, 19),
+        new Other("Elixir of the Mongoose", 5, 6)
       ]
     );
     const items = gildedRose.update();
@@ -27,14 +29,14 @@ describe('Gilded Rose', () => {
     'Sulfuras, Hand of Ragnaros should quality stay if less than zero', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("+5 Dexterity Vest", 10, 0),
-        new Item("Elixir of the Mongoose", 5, 0)
+        new Other("+5 Dexterity Vest", 10, 0),
+        new Other("Elixir of the Mongoose", 5, 0)
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("+5 Dexterity Vest", 10, 0),
-        new Item("Elixir of the Mongoose", 5, 0)
+        new Other("+5 Dexterity Vest", 10, 0),
+        new Other("Elixir of the Mongoose", 5, 0)
       ]
     );
     const items = gildedRose.update();
@@ -47,12 +49,12 @@ describe('Gilded Rose', () => {
   it('Aged Brie quality less then fifty increase by one', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Aged Brie", 10, 20),
+        new Food("Aged Brie", 10, 20),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Aged Brie", 10, 21),
+        new Food("Aged Brie", 10, 21),
       ]
     );
     const items = gildedRose.update();
@@ -65,12 +67,12 @@ describe('Gilded Rose', () => {
   it('Not isWeapon decrease sellIn by one', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Aged Brie", 10, 0),
+        new Food("Aged Brie", 10, 0),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Aged Brie", 9, 0),
+        new Food("Aged Brie", 9, 0),
       ]
     );
     const items = gildedRose.update();
@@ -83,12 +85,12 @@ describe('Gilded Rose', () => {
   it('isConcert increase quality by two when sellIn less then eleven and quality less than fifty', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 0),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", 10, 0),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", 10, 2),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", 10, 2),
       ]
     );
     const items = gildedRose.update();
@@ -101,12 +103,12 @@ describe('Gilded Rose', () => {
   it('isConcert increase quality by three when sellIn less then six and quality less than fifty', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 0),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", 5, 0),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 3),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", 5, 3),
       ]
     );
     const items = gildedRose.update();
@@ -120,12 +122,12 @@ describe('Gilded Rose', () => {
     'and quality greater than zero', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("+5 Dexterity Vest", -1, 1),
+        new Other("+5 Dexterity Vest", -1, 1),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("+5 Dexterity Vest", -1, 0),
+        new Other("+5 Dexterity Vest", -1, 0),
       ]
     );
     const items = gildedRose.update();
@@ -138,12 +140,12 @@ describe('Gilded Rose', () => {
   it('isConcert, Not isFood decrease quality to zero when sellIn less then zero', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", -1, 5),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", -1, 5),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Backstage passes to a TAFKAL80ETC concert", -1, 0),
+        new Concert("Backstage passes to a TAFKAL80ETC concert", -1, 0),
       ]
     );
     const items = gildedRose.update();
@@ -157,12 +159,12 @@ describe('Gilded Rose', () => {
     'and quality less than fifty', () => {
     const gildedRose = new GildedRose(
       [
-        new Item("Aged Brie", -1, 0),
+        new Food("Aged Brie", -1, 0),
       ]
     );
     const gildedRoseExpected = new GildedRose(
       [
-        new Item("Aged Brie", -1, 2),
+        new Food("Aged Brie", -1, 2),
       ]
     );
     const items = gildedRose.update();
