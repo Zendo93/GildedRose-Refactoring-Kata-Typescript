@@ -1,4 +1,6 @@
-class Other {
+import {IItem} from "@/IItem";
+
+export class Other implements IItem{
   name: string;
   sellIn: number;
   quality: number;
@@ -7,5 +9,29 @@ class Other {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
+  }
+
+  decreaseQuality() {
+    if (this.quality > 0) {
+      --this.quality;
+    }
+  }
+
+  decreaseSellIn() {
+    --this.sellIn;
+  }
+
+  increaseQuality() {
+    if (this.quality < 50) {
+      ++this.quality;
+    }
+  }
+
+  update() {
+    this.decreaseQuality();
+    this.decreaseSellIn();
+    if (this.sellIn < 0) {
+      this.decreaseQuality();
+    }
   }
 }
